@@ -1,0 +1,62 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <span class="logo-icon">VC</span>
+      <span class="logo-text">VibeCoding</span>
+    </a>
+
+    <nav class="nav" [class.open]="isMenuOpen">
+      <ul class="nav-list">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About Us</a></li>
+        @if (authService.currentUser$ | async) {
+          <li>
+            <a routerLink="/members" routerLinkActive="active" (click)="closeMenu()" class="members-link">
+              <span class="members-dot"></span>
+              Members
+            </a>
+          </li>
+        }
+        <li><a routerLink="/terms" routerLinkActive="active" (click)="closeMenu()">Terms & Conditions</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        @if (authService.currentUser$ | async; as user) {
+          <!-- Logged in state -->
+          <a routerLink="/profile" class="user-pill" (click)="closeMenu()" title="View Profile">
+            <div class="user-avatar-sm">{{ user.name[0].toUpperCase() }}</div>
+            <span class="user-name-sm">{{ user.name.split(' ')[0] }}</span>
+            <svg class="profile-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <button class="btn-logout" (click)="logout()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Log Out
+          </button>
+        } @else {
+          <!-- Logged out state -->
+          <a routerLink="/login" class="btn-login" (click)="closeMenu()">Log In</a>
+          <a routerLink="/signup" class="btn-signup" (click)="closeMenu()">
+            Sign Up
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        }
+      </div>
+    </nav>
+
+    <button class="hamburger" [class.active]="isMenuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="overlay" [class.visible]="isMenuOpen" (click)="closeMenu()"></div>
+</header>

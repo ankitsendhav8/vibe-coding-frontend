@@ -1,0 +1,196 @@
+<main class="auth-page">
+  <div class="auth-bg">
+    <div class="auth-orb orb-1"></div>
+    <div class="auth-orb orb-2"></div>
+  </div>
+
+  <div class="auth-container">
+
+    <div class="auth-card">
+      <!-- Header -->
+      <div class="auth-header">
+        <a routerLink="/" class="auth-logo">VC</a>
+        <h1>Create an account</h1>
+        <p>Join VibeCoding — it's free forever</p>
+      </div>
+
+      <!-- Server Error -->
+      @if (serverError) {
+        <div class="alert alert-error">
+          <span class="alert-icon">✕</span>
+          {{ serverError }}
+        </div>
+      }
+
+      <!-- Form -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- Name -->
+        <div class="field" [class.field--error]="name.invalid && name.touched">
+          <label for="name">Full name</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Ankit Sendhav"
+              autocomplete="name"
+            />
+          </div>
+          @if (name.invalid && name.touched) {
+            <span class="field-error">
+              @if (name.errors?.['required']) { Full name is required. }
+              @else if (name.errors?.['minlength']) { Name must be at least 2 characters. }
+              @else if (name.errors?.['maxlength']) { Name must be under 50 characters. }
+            </span>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="field" [class.field--error]="email.invalid && email.touched">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          @if (email.invalid && email.touched) {
+            <span class="field-error">
+              @if (email.errors?.['required']) { Email is required. }
+              @else if (email.errors?.['email']) { Please enter a valid email address. }
+            </span>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="field" [class.field--error]="password.invalid && password.touched">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-pw" (click)="showPassword = !showPassword" tabindex="-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                @if (showPassword) {
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                } @else {
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                }
+              </svg>
+            </button>
+          </div>
+
+          <!-- Password strength -->
+          @if (password.value) {
+            <div class="strength-bar">
+              <div class="strength-track">
+                <div
+                  class="strength-fill"
+                  [class]="'level-' + passwordStrength.level"
+                  [style.width.%]="passwordStrength.level * 25"
+                ></div>
+              </div>
+              @if (passwordStrength.label) {
+                <span class="strength-label" [class]="'level-' + passwordStrength.level">
+                  {{ passwordStrength.label }}
+                </span>
+              }
+            </div>
+          }
+
+          @if (password.invalid && password.touched) {
+            <span class="field-error">
+              @if (password.errors?.['required']) { Password is required. }
+              @else if (password.errors?.['minlength']) { Password must be at least 6 characters. }
+            </span>
+          }
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="field" [class.field--error]="confirmPassword.invalid && confirmPassword.touched">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </span>
+            <input
+              id="confirmPassword"
+              [type]="showConfirm ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-pw" (click)="showConfirm = !showConfirm" tabindex="-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                @if (showConfirm) {
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                } @else {
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                }
+              </svg>
+            </button>
+          </div>
+          @if (confirmPassword.invalid && confirmPassword.touched) {
+            <span class="field-error">
+              @if (confirmPassword.errors?.['required']) { Please confirm your password. }
+              @else if (confirmPassword.errors?.['mismatch']) { Passwords do not match. }
+            </span>
+          }
+        </div>
+
+        <!-- Terms agreement -->
+        <p class="terms-note">
+          By creating an account you agree to our
+          <a routerLink="/terms">Terms &amp; Conditions</a>.
+        </p>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-submit">
+          Create Account
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Footer -->
+      <div class="auth-footer">
+        Already have an account? <a routerLink="/login">Sign in</a>
+      </div>
+    </div>
+
+  </div>
+</main>

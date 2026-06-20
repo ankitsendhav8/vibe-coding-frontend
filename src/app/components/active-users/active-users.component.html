@@ -1,0 +1,58 @@
+<section class="active-users">
+  <div class="container">
+    <div class="section-header">
+      <div class="header-left">
+        <span class="live-badge">
+          <span class="live-dot"></span>
+          Live
+        </span>
+        <h2>Active Members</h2>
+      </div>
+      <p class="user-count">
+        @if (!loading) {
+          {{ users.length }} {{ users.length === 1 ? 'member' : 'members' }} signed up
+        }
+      </p>
+    </div>
+
+    @if (loading) {
+      <div class="users-skeleton">
+        @for (item of [1,2,3,4,5,6]; track item) {
+          <div class="skeleton-card">
+            <div class="skeleton-avatar"></div>
+            <div class="skeleton-lines">
+              <div class="skeleton-line long"></div>
+              <div class="skeleton-line short"></div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else if (error) {
+      <div class="users-error">
+        <span>⚠️</span>
+        <p>{{ error }}</p>
+      </div>
+    } @else if (users.length === 0) {
+      <div class="users-empty">
+        <span>👥</span>
+        <p>No members yet. Be the first!</p>
+      </div>
+    } @else {
+      <div class="users-grid">
+        @for (user of users; track user.id) {
+          <div class="user-card">
+            <div class="user-avatar" [style.background]="getAvatarColor(user.id)">
+              {{ getInitials(user.name) }}
+            </div>
+            <div class="user-info">
+              <span class="user-name">{{ user.name }}</span>
+              <span class="user-email">{{ user.email }}</span>
+              <span class="user-joined">Joined {{ formatDate(user.created_at) }}</span>
+            </div>
+            <span class="user-badge">Member</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

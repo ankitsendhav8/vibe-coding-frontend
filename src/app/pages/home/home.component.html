@@ -1,0 +1,206 @@
+<main class="home">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Built 100% with Cursor &amp; Prompt Engineering — zero hand-written code
+      </div>
+      <h1 class="hero-title">
+        Stop Coding.<br />
+        <span class="gradient-text">Start Prompting.</span>
+      </h1>
+      <p class="hero-description">
+        VibeCoding is a real project — built entirely inside <strong>Cursor</strong> using AI prompts.
+        No manual boilerplate. No copy-pasting from Stack Overflow. Just describe it, prompt it, ship it.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/about" class="btn btn-primary">
+          See How It Was Built
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#stack" class="btn btn-secondary">
+          View the Stack
+        </a>
+      </div>
+      <div class="hero-prompt">
+        <div class="prompt-label">
+          <span class="prompt-dot"></span>
+          Actual prompt used to build this page
+        </div>
+        <div class="prompt-box">
+          <span class="prompt-cursor">›</span>
+          <span class="prompt-text">"Create a new main home page which has a header, footer and main content section. Create different components for header and footer. The home page should have basic static content, look good design-wise, and be fully responsive..."</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        @for (stat of stats; track stat.label) {
+          <div class="stat-card">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why Vibe Code?</span>
+        <h2 class="section-title">The AI-first approach to building software</h2>
+        <p class="section-subtitle">
+          Every feature on this platform was created by writing a clear prompt in Cursor. Here's what that unlocks.
+        </p>
+      </div>
+      <div class="features-grid">
+        @for (feature of features; track feature.title) {
+          <div class="feature-card">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="stack-section" id="stack">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">The Stack</span>
+        <h2 class="section-title">What the AI chose to build with</h2>
+        <p class="section-subtitle">
+          Every technology decision was either prompted explicitly or suggested by the AI. Here's what the stack looks like.
+        </p>
+      </div>
+      <div class="stack-grid">
+        @for (item of stack; track item.label) {
+          <div class="stack-card">
+            <span class="stack-label">{{ item.label }}</span>
+            <span class="stack-value">{{ item.value }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">The Workflow</span>
+        <h2 class="section-title">How this entire project was built</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Open Cursor</h3>
+            <p>Start a new Angular project. Open the AI chat panel inside Cursor and set the context — project goal, preferred stack, folder structure.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Write the Prompt</h3>
+            <p>Describe what you want in natural language. Be specific about design, responsiveness, component breakdown, and behaviour. The clearer the prompt, the cleaner the code.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Review &amp; Iterate</h3>
+            <p>Cursor generates the code. Review it, run it, and if something is off — re-prompt. No manual editing needed. Just better prompts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompt Showcase -->
+  <section class="prompts-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Real Prompts Used</span>
+        <h2 class="section-title">These prompts built this app</h2>
+        <p class="section-subtitle">Not marketing copy. These are the actual prompts typed into Cursor to create VibeCoding.</p>
+      </div>
+      <div class="prompts-list">
+        <div class="prompt-item">
+          <span class="p-tag">Header</span>
+          <p>"Create a fixed header component with glassmorphism effect, a logo, nav links for Home, About Us, Terms and Conditions, a Get Started CTA, and a hamburger menu for mobile."</p>
+        </div>
+        <div class="prompt-item">
+          <span class="p-tag">Backend</span>
+          <p>"Set up an Express.js backend with a users route, MS SQL Server connection, error handler middleware, and a not-found middleware."</p>
+        </div>
+        <div class="prompt-item">
+          <span class="p-tag">Home Page</span>
+          <p>"Create a home page with a hero section, stats strip, features grid, how-it-works steps, and a CTA. Make it responsive and use a dark theme with indigo gradients."</p>
+        </div>
+        <div class="prompt-item">
+          <span class="p-tag">Routing</span>
+          <p>"Set up Angular lazy-loaded routes for Home, About Us, and Terms and Conditions. Add page titles and a wildcard redirect to home."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Users — shown only when logged in -->
+  @if (authService.currentUser$ | async; as user) {
+    <div class="logged-in-banner">
+      <div class="container">
+        <div class="banner-inner">
+          <div class="banner-left">
+            <span class="banner-avatar">{{ user.name[0].toUpperCase() }}</span>
+            <div>
+              <p class="banner-greeting">You're logged in as <strong>{{ user.name }}</strong> 👋</p>
+              <p class="banner-sub">Here are all the members who've joined VibeCoding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-active-users />
+  }
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-orb"></div>
+        <div class="cta-badge">Open Source · AI Built · Cursor Powered</div>
+        <h2>Ready to vibe code your next project?</h2>
+        <p>Stop spending hours on setup and boilerplate. Open Cursor, write a clear prompt, and build something real — today.</p>
+        <div class="cta-actions">
+          <a routerLink="/about" class="btn btn-primary btn-lg">
+            Read the Full Story
+          </a>
+          <a routerLink="/terms" class="btn btn-ghost btn-lg">
+            Terms &amp; Conditions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

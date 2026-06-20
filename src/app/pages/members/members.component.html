@@ -1,0 +1,180 @@
+<main class="members-page">
+
+  <div class="page-bg">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-left">
+        <div class="page-icon">👥</div>
+        <div>
+          <h1>Community Members</h1>
+          <p>Everyone who has signed up to VibeCoding</p>
+        </div>
+      </div>
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        Live
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    @if (!loading()) {
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-num">{{ allUsers().length }}</span>
+          <span class="stat-txt">Total Members</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num">{{ filteredUsers().length }}</span>
+          <span class="stat-txt">Showing</span>
+        </div>
+        <div class="stat-sep"></div>
+        @if (newestMember) {
+          <div class="stat stat--newest">
+            <span class="stat-txt">Newest</span>
+            <span class="stat-name">{{ newestMember.name }}</span>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-wrap" [class.has-value]="searchQuery()">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search by name or email..."
+          [value]="searchQuery()"
+          (input)="onSearch($any($event.target).value)"
+        />
+        @if (searchQuery()) {
+          <button class="clear-btn" (click)="clearSearch()" title="Clear">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        }
+      </div>
+
+      <select class="sort-select" [value]="sortBy()" (change)="onSort($any($event.target).value)">
+        @for (opt of sortOptions; track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Loading Skeletons -->
+    @if (loading()) {
+      <div class="members-grid">
+        @for (i of [1,2,3,4,5,6,7,8,9]; track i) {
+          <div class="skeleton-card">
+            <div class="sk-avatar"></div>
+            <div class="sk-lines">
+              <div class="sk-line long"></div>
+              <div class="sk-line medium"></div>
+              <div class="sk-line short"></div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Error -->
+    @if (!loading() && error()) {
+      <div class="state-box error-box">
+        <span class="state-icon">⚠️</span>
+        <h3>Failed to load members</h3>
+        <p>{{ error() }}</p>
+      </div>
+    }
+
+    <!-- Empty search -->
+    @if (!loading() && !error() && filteredUsers().length === 0 && searchQuery()) {
+      <div class="state-box">
+        <span class="state-icon">🔍</span>
+        <h3>No results for "{{ searchQuery() }}"</h3>
+        <p>Try a different name or email address.</p>
+        <button class="btn-clear-search" (click)="clearSearch()">Clear Search</button>
+      </div>
+    }
+
+    <!-- No members at all -->
+    @if (!loading() && !error() && allUsers().length === 0) {
+      <div class="state-box">
+        <span class="state-icon">👤</span>
+        <h3>No members yet</h3>
+        <p>Be the first to sign up and join the VibeCoding community!</p>
+        <a routerLink="/signup" class="btn-action">Create Account</a>
+      </div>
+    }
+
+    <!-- Members Grid -->
+    @if (!loading() && !error() && filteredUsers().length > 0) {
+      <div class="members-grid">
+        @for (user of filteredUsers(); track user.id) {
+          <div class="member-card" [class.is-you]="isCurrentUser(user.id)">
+            @if (isCurrentUser(user.id)) {
+              <span class="you-tag">You</span>
+            }
+
+            <div class="card-top">
+              <div class="member-avatar" [style.background]="getAvatarColor(user.id)">
+                {{ getInitials(user.name) }}
+              </div>
+              <div class="member-meta">
+                <h3 class="member-name">{{ user.name }}</h3>
+                <p class="member-email">{{ user.email }}</p>
+              </div>
+            </div>
+
+            <div class="card-bottom">
+              <div class="card-stat">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span>Joined {{ formatDate(user.created_at) }}</span>
+              </div>
+              <div class="card-stat">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>{{ getDaysSince(user.created_at) }}d member</span>
+              </div>
+            </div>
+
+            <div class="card-id">
+              <span class="id-badge">#{{ user.id }}</span>
+              <span class="member-status">
+                <span class="status-dot"></span>
+                Member
+              </span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Result count footer -->
+      @if (searchQuery()) {
+        <p class="result-count">
+          Showing <strong>{{ filteredUsers().length }}</strong> of <strong>{{ allUsers().length }}</strong> members
+        </p>
+      }
+    }
+
+  </div>
+</main>

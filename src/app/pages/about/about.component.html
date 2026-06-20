@@ -1,0 +1,169 @@
+<main class="about-page">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-bg">
+      <div class="hero-orb"></div>
+    </div>
+    <div class="container">
+      <span class="page-tag">About This Project</span>
+      <h1>Built by a developer.<br /><span class="gradient-text">Built by a prompt.</span></h1>
+      <p>VibeCoding is a real, production-ready web application built entirely inside <strong>Cursor</strong> using AI prompt engineering. No scaffolding tools were hand-crafted. No component was written manually. Every line of code was generated from a clear, intentional prompt.</p>
+    </div>
+  </section>
+
+  <!-- The Story Section -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text">
+          <span class="section-tag">The Story</span>
+          <h2>What happens when you treat prompts like code?</h2>
+          <p>It started as an experiment: could a developer build an entire full-stack web application — Angular frontend, Node.js backend, SQL database, routing, components, styles — without writing a single line of code manually?</p>
+          <p>The answer, using <strong>Cursor</strong> and well-crafted prompts, was <em>yes</em>. VibeCoding is that experiment made real. Every route, every component, every API endpoint on this platform was described in natural language and brought to life by AI.</p>
+          <p>This isn't about being lazy. It's about being deliberate. Writing a good prompt requires you to think clearly about architecture, design, and user experience — arguably more than typing the code yourself.</p>
+          <div class="story-highlight">
+            <span class="highlight-icon">💬</span>
+            <p>"If you can describe it clearly enough for another developer to build it, you can describe it clearly enough for an AI to build it."</p>
+          </div>
+        </div>
+        <div class="story-aside">
+          <div class="cursor-card">
+            <div class="cursor-card-header">
+              <span class="cursor-dot red"></span>
+              <span class="cursor-dot yellow"></span>
+              <span class="cursor-dot green"></span>
+              <span class="cursor-card-title">Cursor AI — Chat</span>
+            </div>
+            <div class="cursor-messages">
+              <div class="msg user">
+                <span>in angular front end remove the current section which is there in app component. now create a new main home page which has header, footer and main content section...</span>
+              </div>
+              <div class="msg ai">
+                <span>I'll create a complete home page with separate Header and Footer components, responsive design, and modern dark UI. Let me start with the Header component...</span>
+              </div>
+              <div class="msg user">
+                <span>change the content of home, about and terms pages so it feels like it has been developed by a developer via prompt engineering and via use of cursor</span>
+              </div>
+              <div class="msg ai typing">
+                <span>Updating all three pages with authentic AI-first content</span>
+                <span class="blink">▌</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Happened</span>
+        <h2 class="section-title">The timeline of a vibe-coded project</h2>
+      </div>
+      <div class="timeline">
+        @for (item of timeline; track item.year) {
+          <div class="timeline-item">
+            <div class="timeline-year">{{ item.year }}</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-event">{{ item.event }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Believe Section -->
+  <section class="beliefs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Philosophy</span>
+        <h2 class="section-title">What we believe about AI-first development</h2>
+        <p class="section-subtitle">
+          These are the principles that shaped how VibeCoding was built — and how we think about the future of software development.
+        </p>
+      </div>
+      <div class="beliefs-grid">
+        @for (belief of beliefs; track belief.title) {
+          <div class="belief-card">
+            <div class="belief-icon">{{ belief.icon }}</div>
+            <h3>{{ belief.title }}</h3>
+            <p>{{ belief.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Used Section -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Tools Used</span>
+        <h2 class="section-title">The exact toolkit behind VibeCoding</h2>
+        <p class="section-subtitle">No magic. Just these tools, used deliberately.</p>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card featured">
+          <div class="tool-icon">🖥️</div>
+          <div class="tool-info">
+            <h3>Cursor</h3>
+            <p>AI-native IDE. Every file in this project was generated from the Cursor chat panel. The entire codebase lives here.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🤖</div>
+          <div class="tool-info">
+            <h3>Claude (Anthropic)</h3>
+            <p>The AI model powering the code generation inside Cursor. Handles context, architecture, and edge cases exceptionally well.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🅰️</div>
+          <div class="tool-info">
+            <h3>Angular 18</h3>
+            <p>Standalone components, lazy-loaded routes, and signals-ready architecture — all prompted into existence.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🟢</div>
+          <div class="tool-info">
+            <h3>Node.js + Express</h3>
+            <p>REST API backend with route handlers, middleware, and SQL integration — generated from a single backend setup prompt.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🗄️</div>
+          <div class="tool-info">
+            <h3>MS SQL Server</h3>
+            <p>Database layer configured and connected via prompted db.js config. Schema and queries described in plain language.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🎨</div>
+          <div class="tool-info">
+            <h3>SCSS + CSS Variables</h3>
+            <p>Dark theme, responsive breakpoints, glassmorphism — all designed via prompt. Zero Figma, zero manual CSS sessions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>Try it yourself.</h2>
+        <p>Open Cursor. Write a clear prompt. Build something real. The barrier to entry for shipping software has never been lower — use it.</p>
+        <div class="cta-actions">
+          <a routerLink="/" class="btn btn-primary btn-lg">Back to Home</a>
+          <a routerLink="/terms" class="btn btn-ghost btn-lg">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
