@@ -1,27 +1,105 @@
-# MyAngularApp
+# Vibe Coding
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Vibe Coding is a full-stack web application built using Angular for the frontend and Node.js with Express.js for the backend. The application uses MySQL/TiDB as its database and follows a REST API architecture.
 
-## Development server
+## Tech Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Frontend
+- Angular
+- TypeScript
+- RxJS
+- HTML5
+- CSS3
 
-## Code scaffolding
+### Backend
+- Node.js
+- Express.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Database
+- MySQL (Local Development)
+- TiDB Cloud (Production)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Clone the Repository
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Frontend Setup
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/ankitsendhav8/vibe-coding-frontend.git
+cd vibe-coding-frontend
+npm install
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Frontend will run on:
 
-## Further help
+```text
+http://localhost:4200
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+### Backend Setup
+
+```bash
+git clone https://github.com/ankitsendhav8/Vibe-Coding.git
+cd Vibe-Coding/vibe-coding-backend
+npm install
+npm start
+```
+
+Backend will run on:
+
+```text
+http://localhost:3000
+```
+
+
+## Environment Variables
+
+Create a `.env` file inside the `Vibe-Coding/vibe-coding-backend` folder:
+
+```env
+PORT=3000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:4200
+
+== MYSQL CONNECTION
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=vibecodingdb
+
+== TIDB Connection
+
+DB_SERVER=gateway01.ap-southeast-1.prod.alicloud.tidbcloud.com
+DB_PORT=4000
+DB_NAME=vibecodingdb
+DB_USER=your_user
+DB_PASSWORD=your_password
+
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=7d
+```
+
+## Live Application
+
+### Frontend
+
+https://vibe-coding-frontend-ikrw.onrender.com
+## Database
+
+The application uses:
+
+- MySQL for local development
+- TiDB Cloud for production deployment
+
+Update database credentials in the `.env` file before running the application.
+
+## Author
+
+**Ankit Sendhav**
+
+GitHub: https://github.com/ankitsendhav8
